@@ -55,7 +55,8 @@ ROOT_URLCONF = 'ProjectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ r"C:\Users\ALe\Documents\Coder-ProjectoFinal\ProjectoFinal\blogcoder\templates"
+        'DIRS': [ 
+            r"C:\Users\ALe\Documents\Coder-ProjectoFinal\ProjectoFinal\blogcoder\templates"
             ],
         'APP_DIRS': True,
         'OPTIONS': {
