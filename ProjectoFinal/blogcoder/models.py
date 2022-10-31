@@ -34,13 +34,13 @@ class Estudiantes(models.Model):
     def __str__(self):
         return f"({self.apellido}) {self.nombre}"
     
-class Curso(models.Model):
-    nombre = models.CharField(max_length=30)
-    camada = models.IntegerField()
-    fecha_de_inicio = models.DateField(null=True)
-
-    def __str__(self):
-        return f"({self.camada}) {self.nombre}"
+#class Curso(models.Model):
+ #   nombre = models.CharField(max_length=30)
+  #  camada = models.IntegerField()
+   # fecha_de_inicio = models.DateField(null=True)
+#
+ #   def __str__(self):
+  #      return f"({self.camada}) {self.nombre}"
 
 class Profesores(models.Model):
     
