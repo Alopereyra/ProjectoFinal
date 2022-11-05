@@ -2,11 +2,31 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from blogcoder.models import Curso
+from blogcoder.forms import ArticuloForm, AutorForm, SeccionForm
 
 # Create your views here.
 
+def procesar_formulario_articulo(request):
+    mi_formulario = ArticuloForm()
+    contexto = {"formulario": mi_formulario}
+    return render(request, "blogcoder/formulario-articulo.html", context=contexto)
+
+
+def procesar_formulario_seccion(request):
+    mi_formulario = SeccionForm()
+    contexto = {"formulario": mi_formulario}
+    return render(request, "blogcoder/formulario-seccion.html", context=contexto)
+
+
+def procesar_formulario_autor(request):
+    mi_formulario = AutorForm()
+    contexto = {"formulario": mi_formulario}
+    return render(request, "blogcoder/formulario-autor.html", context=contexto)
+
+
 def ayuda(request):
-    return render(request, "blogcoder/ayuda.html")
+    pass
+    #return render(request, "blogcoder/ayuda.html")
 
 
 def mostrar_inicio(request):
