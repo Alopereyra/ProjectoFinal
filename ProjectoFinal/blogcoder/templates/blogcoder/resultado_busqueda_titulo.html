@@ -1,0 +1,11 @@
+<p>Titulo encontrado: {{ titulo }}</p>
+
+{% if titulos_encontrados %}
+
+<ul>
+{% for titulo in titulos_encontrados %}
+    <li>{{titulo.titulo}} (Este es el texto: {{titulo.texto}})</li>
+{% endfor %}
+</ul>
+
+{% endif %}

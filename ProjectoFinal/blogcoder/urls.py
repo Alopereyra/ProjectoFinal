@@ -14,10 +14,10 @@ from blogcoder.views import (
     procesar_formulario_seccion,
     procesar_formulario_autor,
     procesar_formulario_entregable,
-        
+    busqueda_titulo,
+    buscar_titulo,
+            
     )
-
-#  procesar_formulario_2
 
 
 urlpatterns = [
@@ -36,4 +36,6 @@ urlpatterns = [
     path("busqueda-2/", busqueda_2, name="busqueda-2"),
     path("buscar/", buscar),
     path("buscar-2/", buscar_2),
+    path("busqueda-titulo/", busqueda_titulo, name="busqueda-titulo"),
+    path("buscar-titulo/", buscar_titulo, name="buscar-titulo")
     ]
