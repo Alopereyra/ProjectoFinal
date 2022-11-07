@@ -13,6 +13,7 @@ from blogcoder.views import (
     procesar_formulario_articulo,
     procesar_formulario_seccion,
     procesar_formulario_autor,
+    procesar_formulario_entregable,
         
     )
 
@@ -30,7 +31,7 @@ urlpatterns = [
     path("profesores/", profesores, name="profesores"),
     path("ayuda/", ayuda),
     path("formulario/", procesar_formulario, name="formulario"),
-    
+    path("formulario-entregable/", procesar_formulario_entregable, name="formulario_entregable"),
     path("busqueda/", busqueda, name="busqueda"),
     path("busqueda-2/", busqueda_2, name="busqueda-2"),
     path("buscar/", buscar),
