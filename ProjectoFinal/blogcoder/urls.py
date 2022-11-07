@@ -16,6 +16,14 @@ from blogcoder.views import (
     procesar_formulario_entregable,
     busqueda_titulo,
     buscar_titulo,
+    listar_cursos,
+    listar_articulos,
+    ArticulosList,
+    ArticulosDetalle,
+    ArticulosCreacion,
+    ArticulosUpdateView,
+    ArticulosDelete,
+    
             
     )
 
@@ -37,5 +45,16 @@ urlpatterns = [
     path("buscar/", buscar),
     path("buscar-2/", buscar_2),
     path("busqueda-titulo/", busqueda_titulo, name="busqueda-titulo"),
-    path("buscar-titulo/", buscar_titulo, name="buscar-titulo")
+    path("buscar-titulo/", buscar_titulo, name="buscar-titulo"),
+    path("cursos-lista/", listar_cursos),
+    path("articulos-lista/", listar_articulos),
+    
+    path("articulos/list", ArticulosList.as_view(), name="ArticulosList"),
+    path("r'(?P<pk>\d+)^$'", ArticulosDetalle.as_view(), name="ArticulosDetail"),
+    path("articulos-nuevo/'", ArticulosCreacion.as_view(), name="ArticulosNew"),
+    path("r'editar/(?P<pk>\d+)^$'", ArticulosUpdateView.as_view(), name="ArticulosUpdate"),
+    path("r'borrar/(?P<pk>\d+)^$'", ArticulosDelete.as_view(), name="ArticulosDelete"),
+    
+    
+    
     ]

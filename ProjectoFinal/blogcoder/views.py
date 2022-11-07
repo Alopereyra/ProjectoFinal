@@ -179,3 +179,49 @@ def buscar_titulo(request):
                     }
 
         return render(request, "blogcoder/resultado_busqueda_titulo.html", contexto)
+    
+    
+    
+def listar_cursos(request):
+    todos_los_cursos = Curso.objects.all()
+    
+    contexto = {"cursos_encontrados": todos_los_cursos}
+    
+    return render(request, "blogcoder/listar-cursos.html", contexto)
+     
+
+def listar_articulos(request):
+    pass  
+
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+class ArticulosList(ListView):
+    model = Articulos
+    template_name = "blogcoder/articulos-lista.html"   
+    
+class ArticulosDetalle(DetailView):
+    model = Articulos
+    template_name = "blogcoder/articulos_detalle.html" 
+    
+    
+from django.urls import reverse
+    
+class ArticulosCreacion(CreateView):
+    model = Articulos
+    fields = ["titulo", "texto", "fecha"]
+
+    def get_success_url(self):
+        return reverse("ArticulosList")
+
+
+class ArticulosUpdateView(UpdateView):
+    model = Articulos
+    success_url = "/blogcoder/articulos/list"
+    fields = ["titulo", "texto", "fecha"]
+
+
+class ArticulosDelete(DeleteView):
+
+    model = Articulos
+    success_url = "/blogcoder/articulos/list"
+    

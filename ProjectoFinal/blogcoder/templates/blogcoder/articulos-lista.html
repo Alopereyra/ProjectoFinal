@@ -1,0 +1,15 @@
+<h1>Cursos de Coder - Python </h1>
+<ul>
+    {% for articulos in object_list %}
+    
+    <li>
+        <p>Nombre del Titulo: {{ articulos.titulo }}</p>
+        <p>
+            <a href="{% url 'ArticulosDetail' articulos.id %}">Ver articulos</a>
+            <a href="{% url 'ArticulosUpdate' articulos.id %}">Editar</a>
+            <a href="{% url 'ArticulosDelete' articulos.id %}">Borrar</a>
+        </p>
+        
+    </li>
+    {% endfor %}
+</ul>
