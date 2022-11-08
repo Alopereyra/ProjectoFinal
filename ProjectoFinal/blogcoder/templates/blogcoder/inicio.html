@@ -4,8 +4,12 @@
 
 {% block contenidoQueCambia %}
 
-<h1> Este es template de Inicio </h1>
-<p>Se ha heredado todo desde la plantilla padre</p>
+<h1>Bienvenido/a a mi proyecto!</h1>
+<h2> Este es template de Inicio </h2>
+
+{% if mensaje %}
+<h3>{{ mensaje }}</h3>
+{% endif %}
 
 
 {% endblock %} 

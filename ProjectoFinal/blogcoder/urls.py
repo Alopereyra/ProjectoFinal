@@ -23,7 +23,10 @@ from blogcoder.views import (
     ArticulosCreacion,
     ArticulosUpdateView,
     ArticulosDelete,
-    
+    MyLogin,
+    MyLogout,
+    register,
+       
             
     )
 
@@ -55,6 +58,10 @@ urlpatterns = [
     path("r'editar/(?P<pk>\d+)^$'", ArticulosUpdateView.as_view(), name="ArticulosUpdate"),
     path("r'borrar/(?P<pk>\d+)^$'", ArticulosDelete.as_view(), name="ArticulosDelete"),
     
-    
+    #path("inicio/", mostrar_inicio, name="Inicio"),
+    path("login/", MyLogin.as_view(), name="Login"),
+    path("logout/", MyLogout.as_view(), name="Logout"),
+    #path("login2/", login_request, name="Login2"),  # Propuesta en las Slides
+    path("register/", register, name="Register")
     
     ]

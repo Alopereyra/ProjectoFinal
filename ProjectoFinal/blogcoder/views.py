@@ -4,6 +4,9 @@ from django.shortcuts import render
 from blogcoder.models import Curso, Entregables, Articulos, Seccion, Autor, Profesores, Estudiantes
 from blogcoder.forms import ArticuloForm, AutorForm, SeccionForm, EntregablesForm, ProfesoresForm, EstudiantesForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def procesar_formulario_entregable(request):
@@ -194,19 +197,46 @@ def listar_articulos(request):
     pass  
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
 
-class ArticulosList(ListView):
+class MyLogin(LoginView):
+    template_name = "blogcoder/login.html"
+    
+class MyLogout(LogoutView):
+    template_name = "blogcoder/logout.html"
+    
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username_capturado = form.cleaned_data["username"]
+            form.save()
+
+            return render(request, "blogcoder/inicio.html", {"mensaje": f"Usuario: {username_capturado}"})
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, "blogcoder/registro.html", {"form": form})
+
+@login_required
+def mostrar_inicio(request):
+    return render(request, "blogcoder/inicio.html")
+
+
+class ArticulosList(ListView, LoginRequiredMixin):
     model = Articulos
     template_name = "blogcoder/articulos-lista.html"   
     
-class ArticulosDetalle(DetailView):
+class ArticulosDetalle(DetailView, LoginRequiredMixin):
     model = Articulos
     template_name = "blogcoder/articulos_detalle.html" 
     
     
 from django.urls import reverse
     
-class ArticulosCreacion(CreateView):
+class ArticulosCreacion(CreateView, LoginRequiredMixin):
     model = Articulos
     fields = ["titulo", "texto", "fecha"]
 
@@ -214,13 +244,13 @@ class ArticulosCreacion(CreateView):
         return reverse("ArticulosList")
 
 
-class ArticulosUpdateView(UpdateView):
+class ArticulosUpdateView(UpdateView, LoginRequiredMixin):
     model = Articulos
     success_url = "/blogcoder/articulos/list"
     fields = ["titulo", "texto", "fecha"]
 
 
-class ArticulosDelete(DeleteView):
+class ArticulosDelete(DeleteView, LoginRequiredMixin):
 
     model = Articulos
     success_url = "/blogcoder/articulos/list"
